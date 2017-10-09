@@ -125,6 +125,14 @@ export class Positioning {
       case 'left':
         targetElPosition.left = hostElPosition.left;
         break;
+      case 'leftw':
+        var wswWidth = document.body.clientWidth;//without scrollbar window width
+        if((hostElPosition.left+ targetElement.offsetWidth)>wswWidth){
+          targetElPosition.left = wswWidth - targetElement.offsetWidth - 5; //giving gap 2px
+        } else {
+          targetElPosition.left = hostElPosition.left;
+        }
+        break;
       case 'right':
         targetElPosition.left = hostElPosition.left + hostElPosition.width - targetElement.offsetWidth;
         break;
@@ -275,7 +283,7 @@ function toItemIndexes<T>(a: T[]) {
   return a.map((item, index) => ({item, index}));
 }
 
-export type Placement = 'auto' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |
+export type Placement = 'auto' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' |'bottom-leftw' |
     'bottom-right' | 'left-top' | 'left-bottom' | 'right-top' | 'right-bottom';
 
 export type PlacementArray = Placement | Array<Placement>;
