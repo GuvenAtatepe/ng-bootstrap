@@ -124,6 +124,7 @@ export class NgbDropdown implements OnInit {
     this.placement = config.placement;
     this.autoClose = config.autoClose;
     this._zoneSubscription = ngZone.onStable.subscribe(() => { this._positionMenu(); });
+    window.onresize = (e) =>{ngZone.run(() => {_this._positionMenu(); }); };
   }
 
   ngOnInit() {
